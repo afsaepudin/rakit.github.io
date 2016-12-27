@@ -312,6 +312,21 @@ ul.nav > li > a[href] {
 	color: #369a68;
 }
 
+blockquote {
+	border-left: 3px solid #ddd;
+	margin: 0px;
+	padding: 10px 15px;
+	margin-bottom: 15px;
+	font-size: 1.1em;
+	color: #666;
+}
+
+blockquote.warning {
+	background: #F5F0A7;
+	border-left-color: #C6B458;
+	color: #7B521E;
+}
+
 @media (max-width: 600px) {
 	.navbar {
 		text-align: center;

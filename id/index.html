@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no"/>
@@ -53,12 +53,14 @@ $app->run();</code></pre>
     <div class="container">
       <div class="content">
         <p>
-          Rakit framework is another yet PHP micro framework to help you build web app or web service with ease.
+          Rakit framework adalah PHP micro framework yang dapat membantu kamu membuat web app atau web service dengan mudah.
+          Rakit framework pada dasarnya terinspirasi dari Laravel dan Slim framework. 
+          Untuk itu beberapa API akan terlihat mirip-mirip dengan framework tersebut.
         </p>
 
         <!-- REST -->
         <h2 id="rest">
-          <a href="#rest">REST, of Course</a>
+          <a href="#rest">Mendukung REST</a>
         </h2>
         <pre><code class="php">$app->get('/get', function() {
     return 'You are access this using GET method';
@@ -82,10 +84,10 @@ $app->delete('/delete', function() {
 
         <!-- JSON RESPONSE -->
         <h2 id="json-response">
-          <a href="#json-response">JSON? Easy</a>
+          <a href="#json-response">Menghasilkan JSON Lebih Mudah</a>
         </h2>
         <p>
-          Just return an array to response JSON. We will <code>json_encode()</code> it for you.
+          Cukup return sebuah array untuk menghasilkan respon berupa json.
         </p>
         <pre><code class="php">$app->get('/example.json', function() {
     return [
@@ -96,10 +98,10 @@ $app->delete('/delete', function() {
 
         <!-- MIDDLEWARE -->
         <h2 id="middleware">
-          <a href="#middleware">Yes, We Also Have Middleware</a>
+          <a href="#middleware">Kami Juga Mendukung Middleware Loh</a>
         </h2>
         <p>
-          Register middleware
+          Mendaftarkan middleware
         </p>
         <pre><code class="php">$app->middleware('auth', function($req, $res, $next) {
     if (!isset($_SESSION['user_id'])) {
@@ -109,7 +111,7 @@ $app->delete('/delete', function() {
     return $next();
 });</code></pre>
         <p>
-          Use it
+          Lalu masukkan ke route untuk menggunakan middleware tersebut
         </p>
         <pre><code class="php">$app->get('/admin', function() {
     return 'Hola Admin';
@@ -120,7 +122,9 @@ $app->delete('/delete', function() {
           <a href="#automatic-injection">Automatic Injection</a>
         </h2>
         <p>
-          Hint a class you need in arguments. We will inject its instance automatically.
+          Kami memiliki container yang dapat melihat kebutuhan method pada route handler kamu.
+          Cukup beri hint pada argumen di route handler kamu. 
+          Dan kami akan meng-inject object yang diperlukan pada handler tersebut secara otomatis.
         </p>
         <pre><code class="php">...
 
@@ -139,7 +143,7 @@ $app->post('login', function(Request $req) {
           <a href="#upload-file">Elegant Upload File Syntax</a>
         </h2>
         <p>
-          Single upload file:
+          Upload single file:
         </p>
         <pre><code class="php">$app->post('profile', function(Request $req) {
     $avatar = $req->file('avatar');
@@ -149,7 +153,7 @@ $app->post('login', function(Request $req) {
     }
 });</code></pre>
 <p>
-          Multiple upload file:
+          Upload multiple file:
         </p>
         <pre><code class="php">$app->post('upload-images', function(Request $req) {
     $images = $req->multiFiles('images');
@@ -164,7 +168,7 @@ $app->post('login', function(Request $req) {
           <a href="#dot-notation">Dot Notation</a>
         </h2>
         <p>
-          Access configuration or request data with ease using dot notation:
+          Disini mengakses array konfigurasi dan request data lebih mudah dengan dot notation. Tidak perlu lagi isset-isset apalah itu.
         </p>
         <pre><code class="php">// init App with some configs
 $app = new App('my-awesome-app', [
@@ -186,13 +190,13 @@ $app->post('something', function(App $app, Request $req) {
 
         <!-- CONTROLLER -->
         <h2 id="controller">
-          <a href="#controller">How About Using Controller Class?</a>
+          <a href="#controller">Menggunakan Controller Class Sebagai Route Handler</a>
         </h2>
         <p>
-          Ups, I almost forgot it. Here you go:
+          Bisa kok, begini caranya:
         </p>
         <p>
-          First, create your controller class:
+          Pertama, siapkan controller class dulu pastinya:
         </p>
         <pre><code class="php">&lt;?php
 
@@ -211,7 +215,7 @@ class MyController extends Controller
 }
 </code></pre>
         <p>
-          Then you just need to put this in route:
+          Setelah itu, kamu dapat mendaftarkan route dengan cara seperti ini:
         </p>
         <pre><code class="php">$app->post('something', 'MyController@doSomething');</code></pre>
       </div>
@@ -219,9 +223,9 @@ class MyController extends Controller
     <div class="bottom-content">
       <div class="container">
         <div class="content">
-          <h1>Interested?</h1>
+          <h1>Tertarik?</h1>
           <a href="documentation.html#installation" class="button button-primary button-lg">INSTALL</a>
-          <a href="documentation.html#getting-started" class="button button-secondary button-lg">DOCUMENTATION</a>
+          <a href="documentation.html#getting-started" class="button button-secondary button-lg">DOKUMENTASI</a>
         </div>
       </div>
     </div>    

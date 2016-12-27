@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no"/>
@@ -11,7 +11,7 @@
   <meta name="ogDescription" property="og:description" content="Another yet PHP micro framework that help you build web app or web service with ease." />
   <meta name="ogImage" property="og:image" content="https://rakit.github.io/assets/img/fb-cover.png" />
 
-  <title>Rakit Framework - Documentation</title>
+  <title>Rakit Framework - Dokumentasi</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
   <link rel="stylesheet" href="/assets/css/style.css">
@@ -24,8 +24,8 @@
       </a>
       <div class="navbar-right">
         <ul class="navbar-menu">
-          <li><a href="index.html">Home</a></li>
-          <li class="active"><a href="documentation.html">Documentation</a></li>
+          <li><a href="index.html">Beranda</a></li>
+          <li class="active"><a href="documentation.html">Dokumentasi</a></li>
           <li><a href="https://github.com/rakit/framework" target="_blank">Github</a></li>
         </ul>
       </div>
@@ -37,19 +37,19 @@
         <div class="three columns">
           <ul class="nav main-nav">
             <li>
-              <a href="/id/documentation.html"><small>Bahasa Indo dong!</small></a>
+              <a href="/documentation.html"><small>English please?</small></a>
             </li>
-            <li class="header">Getting Started</li>
+            <li class="header">Memulai</li>
             <li>
-              <a href="#requirements">Requirements</a>
+              <a href="#requirements">Kebutuhan</a>
             </li>
             <li>
-              <a href="#installation">Installation</a>
+              <a href="#installation">Instalasi</a>
             </li>
             <li>
               <a href="#hello-world">Hello World</a>
             </li>
-            <li class="header">Guide</li>
+            <li class="header">Panduan</li>
             <li>
               <a href="#routing">Routing</a>
             </li>
@@ -65,7 +65,7 @@
             <li>
               <a href="#container">Container</a>
             </li>
-            <li class="header">You May Need</li>
+            <li class="header">Tambahan</li>
             <li>
               <a>Validation</a>
             </li>
@@ -83,31 +83,37 @@
         <div class="nine columns">
           <div class="content">
             <section id="getting-started">
-              <h1>Getting Started</h1>
+              <h1>Memulai</h1>
+
+              <!-- REUQUIREMENTS -->
               <h2 id="requirements">
-                <a href="#requirements">Requirements</a>
+                <a href="#requirements">Kebutuhan</a>
               </h2>
               <ul>
-                <li>PHP 5.5 or higher.</li>
-                <li>Composer for installation</li>
+                <li>PHP 5.5 keatas.</li>
+                <li><a href="https://getcomposer.org/" target="_blank">Composer</a> untuk instalasi</li>
               </ul>
+
+              <!-- INSTALLATION -->
               <h2 id="installation">
-                <a href="#installation">Installation</a>
+                <a href="#installation">Instalasi</a>
               </h2>
               <p>
-                First, create your project directory.
+                Pertama-tama, siapkan direktori proyekmu:
               </p>
               <pre><code class="bash">cd /var/www
 mkdir my-project</code></pre>
               <p>
-                Then install rakit framework using composer command below:      
+                Setelah itu, install rakit framework menggunakan perintah composer dibawah ini:      
               </p>
               <pre><code class="bash">composer require "rakit/framework"</code></pre>
+             
+              <!-- HELLO-WORLD -->
               <h2 id="hello-world">
                 <a href="#hello-world">Hello World</a>
               </h2>
               <p>
-                Create index.php, and write scripts below:
+                Buat file index.php, lalu ketikkan kode berikut:
               </p>
               <pre><code class="php enable-line-number">&lt;?php
         
@@ -115,32 +121,121 @@ use Rakit\Framework\App;
 
 require("vendor/autoload.php");
 
-// initialize your app
+// inisialisasi App
 $app = new App('my-awesome-app');
 
-// register routes
+// mendaftarkan route
 $app->get('/', function() {
     return "Hello World!";
 });
 
-// run app
+// menjalankan app
 $app->run();</code></pre>
               <p>
-                Start your server (in this case we are using PHP built-in server):
+                Jalankan server (disini kami menggunakan PHP built-in server):
               </p>
               <pre><code class="bash">php -S localhost:8000</code></pre>
               <p>
-                Open 'http://localhost:8000' in your browser, and voila!
+                Kemudian buka 'http://localhost:8000' pada web browser, dan voila!
               </p>
+
             </section>
             <section id="getting-started">
-              <h1>Guide</h1>
+              <h1>Panduan</h1>
+
+              <!-- ROUTING -->
               <h2 id="routing">
                 <a href="#routing">Routing</a>
               </h2>
               <p>
-                TODO: write this
+                Berikut ini method yang dapat kamu gunakan untuk mendaftarkan route:
               </p>
+              <pre><code class="php">$app->get('/get', function() {
+    return 'Hanya dapat menerima metode GET';
+});
+
+$app->post('/post', function() {
+    return 'Hanya dapat menerima metode POST';
+});
+
+$app->put('/put', function() {
+    return 'Hanya dapat menerima metode PUT';
+});
+
+$app->patch('/patch', function() {
+    return 'Hanya dapat menerima metode PATCH';
+});
+
+$app->delete('/delete', function() {
+    return 'Hanya dapat menerima metode DELETE';
+});
+
+// mendaftarkan beberapa method sekaligus pada sebuah route
+$app->map(['GET', 'POST', 'PUT'], '/some-methods', function() {
+    return 'Route ini dapat menerima metode GET, POST, dan PUT';
+});</code></pre>
+              <blockquote class="warning">
+                Catatan: Setiap route pada rakit framework harus diawali dengan '/'
+              </blockquote>
+
+              <!-- ROUTING:ROUTE-PARAMETER -->
+              <h4 id="route-parameter"><a href="#route-parameter">Route Parameter</a></h4>
+              <p>
+                Untuk mendaftarkan parameter pada route, gunakan <code>:nama_parameter</code> seperti kode berikut:
+              </p>
+              <pre><code class="php">$app->get('/user/:username', function($username) {
+    return "Halo $username";
+});</code></pre>
+              <p>
+                Kode diatas memungkinkan kamu untuk mengakses '/user/foo', '/user/123', '/user/foo123', dsb.
+              </p>
+
+              <!-- ROUTING:ROUTE-OPTIONAL-PARAMETER -->
+              <h4 id="route-optional-parameter"><a href="#route-optional-parameter">Route Optional Parameter</a></h4>
+              <p>
+                Gunakan tanda kurung pada path dan parameter yang ingin dijadikan optional, lalu set nilai default pada argumen parameter tersebut.
+                Contoh:
+              </p>
+              <pre><code class="php">$app->get('/user(/:username)', function($username = 'Anonymous') {
+    return "Halo $username";
+});</code></pre>
+              <blockquote>
+                <small>
+                  Jika tanda '/' pada <code>(/:username)</code> ditaruh diluar menjadi seperti <code>/user/(:username)</code> 
+                  maka route tersebut tidak menerima '/user', melainkan harus '/user/'. 
+                </small>
+              </blockquote>
+
+              <!-- ROUTING:ROUTE-GROUP -->
+              <h4 id="route-group"><a href="#route-group">Route Group</a></h4>
+              <p>
+                Route group digunakan untuk mengelompokan route kamu sehingga lebih mudah dibaca dan dimaintain jika sewaktu-waktu ada perubahan pada path atau middleware group tersebut.
+              </p>
+              <p>
+                Contoh menggunakan route group:
+              </p>
+              <pre><code class="php">$app->group('/admin', function($admin) {
+    $admin->get('/dashboard', function() {
+        return 'Halaman dashboard';
+    });
+
+    $admin->get('/settings', function() {
+        return 'Halaman pengaturan';
+    });
+
+    $admin->post('/settings', function() {
+        return 'Menyimpan pengaturan';
+    });
+});</code></pre>
+              <p>
+                Pada kode diatas, kita mendaftarkan 3 buah route, yaitu:
+              </p>
+              <ul>
+                <li>GET '/admin/dashboard'</li>                
+                <li>GET '/admin/settings'</li>                
+                <li>POST '/admin/settings'</li>                
+              </ul>
+
               <h2 id="middleware">
                 <a href="#middleware">Middleware</a>
               </h2>
