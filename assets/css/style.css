@@ -17,6 +17,10 @@ h3 { font-size: 1.4em }
 h4 { font-size: 1.2em }
 h5 { font-size: 1em }
 
+pre, pre code {
+	background: white;
+}
+
 a[href] {
 	color: #369a68;
 	text-decoration: none;
@@ -75,7 +79,7 @@ hue-6-2: #1C9AA0
   overflow-x: auto;
   padding: 0.5em;
   color: #383a42;
-  background: #fafafa;
+  background: #ffffff;
 }
 
 .hljs-comment,
