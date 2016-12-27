@@ -132,7 +132,7 @@ use Rakit\Framework\Http\Request;
 
 ... 
 
-$app->post('login', function(Request $req) {
+$app->post('/login', function(Request $req) {
     $username = $req->get('username');
     $password = $req->get('password');
     ...
@@ -145,7 +145,7 @@ $app->post('login', function(Request $req) {
         <p>
           Upload single file:
         </p>
-        <pre><code class="php">$app->post('profile', function(Request $req) {
+        <pre><code class="php">$app->post('/profile', function(Request $req) {
     $avatar = $req->file('avatar');
     if ($avatar) {
         $avatar->name = 'new-name';
@@ -155,7 +155,7 @@ $app->post('login', function(Request $req) {
 <p>
           Upload multiple file:
         </p>
-        <pre><code class="php">$app->post('upload-images', function(Request $req) {
+        <pre><code class="php">$app->post('/upload-images', function(Request $req) {
     $images = $req->multiFiles('images');
     foreach ($images as $i => $image) {
         $image->name = 'image-' . ($i + 1);
@@ -179,7 +179,7 @@ $app = new App('my-awesome-app', [
 
 ...
 
-$app->post('something', function(App $app, Request $req) {
+$app->post('/something', function(App $app, Request $req) {
     $productImagePath = $app->config['product.image_path'];
     $productId = $req->get('product.id'); // will retrieve $_POST['product']['id']
     ...
@@ -217,7 +217,7 @@ class MyController extends Controller
         <p>
           Setelah itu, kamu dapat mendaftarkan route dengan cara seperti ini:
         </p>
-        <pre><code class="php">$app->post('something', 'MyController@doSomething');</code></pre>
+        <pre><code class="php">$app->post('/something', 'MyController@doSomething');</code></pre>
       </div>
     </div>
     <div class="bottom-content">
