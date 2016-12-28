@@ -122,9 +122,9 @@ $app->delete('/delete', function() {
           <a href="#automatic-injection">Automatic Injection</a>
         </h2>
         <p>
-          Kami memiliki container yang dapat melihat kebutuhan method pada route handler kamu.
-          Cukup beri hint pada argumen di route handler kamu. 
-          Dan kami akan meng-inject object yang diperlukan pada handler tersebut secara otomatis.
+          Kami memiliki container yang dapat melihat kebutuhan method pada route handler dan constructor kamu.
+          Cukup beri hint pada argumen di route handler atau constructor kamu,
+          container kami akan meng-inject object yang diperlukan secara otomatis!
         </p>
         <pre><code class="php">...
 
@@ -179,8 +179,8 @@ $app = new App('my-awesome-app', [
 
 ...
 
-$app->post('/something', function(App $app, Request $req) {
-    $productImagePath = $app->config['product.image_path'];
+$app->post('/something', function(Request $req) {
+    $productImagePath = $this->config['product.image_path'];
     $productId = $req->get('product.id'); // will retrieve $_POST['product']['id']
     ...
 });
@@ -207,7 +207,6 @@ class MyController extends Controller
 
     public function doSomething()
     {
-        // $this here refer to App instance
         $config = $this->config['any.config'];
         $file = $this->request->file('a_file');
     }
