@@ -245,6 +245,32 @@ footer {
 	font-size: .8em;
 }
 
+body.documentation .content h2 {
+	position: relative;
+	margin-top: 25px;
+}
+
+body.documentation .content h2:before {
+	content: '';
+	width: 100%;
+	height: 0px;
+	position: absolute;
+	border-top: 1px solid #efefef;
+	top: 17px;
+	z-index: 0;
+}
+
+.content img {
+	max-width: 100%;
+}
+
+body.documentation .content h2 a {
+	background: white;
+	z-index: 1;
+	position: relative;
+	padding-right: 15px;
+}
+
 .navbar {
 	width: 100%;
 	background: white;

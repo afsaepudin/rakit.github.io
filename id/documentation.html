@@ -16,7 +16,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
   <link rel="stylesheet" href="/assets/css/style.css">
 </head>
-<body class="page-with-navbar">
+<body class="page-with-navbar documentation">
   <header class="navbar">
     <div class="container">
       <a href="index.html" class="navbar-brand">
@@ -50,6 +50,9 @@
               <a href="#hello-world">Hello World</a>
             </li>
             <li class="header">Panduan</li>
+            <li>
+              <a href="#configuration">Konfigurasi</a>
+            </li>
             <li>
               <a href="#routing">Routing</a>
             </li>
@@ -138,12 +141,164 @@ $app->run();</code></pre>
               <p>
                 Kemudian buka 'http://localhost:8000' pada web browser, dan voila!
               </p>
-
             </section>
             <section id="getting-started">
               <h1>Panduan</h1>
 
-              <!-- ROUTING -->
+              <!-- CONFIGURATION -->
+              <h2 id="configuration">
+                <a href="#configuration">Konfigurasi</a>
+              </h2>
+              <p>
+                Rakit framework pada dasarnya dapat berjalan tanpa konfigurasi apapun.
+                Namun seringkali kita ingin menyimpan beberapa pengaturan pada aplikasi,
+                Rakit framework menyajikan beberapa API untuk mempermudah hal tersebut. 
+              </p>
+              <p>
+                Berikut adalah beberapa hal yang mesti kamu ketahui tentang konfigurasi pada Rakit framework:  
+              </p>
+
+              <!-- CONFIGURATION:GET-SET -->
+              <h4 id="config-get-set">
+                <a href="#config-get-set">Get/Set Konfigurasi</a>
+              </h4>
+              <p>
+                Konfigurasi pada rakit framework tersimpan pada objek <code>config</code> 
+                yang mengimplementasikan <code>ArrayAccess</code>. 
+                Untuk itu, kamu dapat menyimpan dan mengambil konfigurasi layaknya memberikan dan mengambil nilai dari array.
+                Berikut contohnya:
+              </p>
+              <pre><code class="php">// set konfigurasi 'something'
+$app->config['something'] = 'value';
+
+// mengambil konfigurasi 'something'
+echo $app->config['something'];
+</code></pre>
+              <!-- CONFIGURATION:DOT-NOTATION -->
+              <h4 id="config-dot-notation">
+                <a href="#config-dot-notation">Memahami Dot Notation pada Konfigurasi</a>
+              </h4>
+              <p>
+                Perlu kamu ketahui, rakit framework memiliki kemampuan untuk mengambil konfigurasi dengan dot notation.
+                Jika pada array biasa kamu melakukan hal seperti ini:
+              </p>
+              <pre><code class="php">$configs['database'] = [
+    'host' => 'localhost',
+    'username' => 'root',
+    'password' => 's3cR3t',
+    'name' => 'my_db'
+];
+
+...
+
+// mengambil konfigurasi (pada file lain)
+$db_host = isset($configs['database']['host'])? $configs['database']['host'] : 'localhost';
+$db_username = isset($configs['database']['username'])? $configs['database']['username'] : 'root';
+$db_password = isset($configs['database']['password'])? $configs['database']['password'] : '';</code></pre>
+              <p>
+                Dengan rakit framework, kode diatas akan jadi seperti ini'
+              </p>
+              <pre><code class="php">$app->config['database'] = [
+    'host' => 'localhost',
+    'username' => 'root',
+    'password' => 's3cR3t',
+    'name' => 'my_db'
+];
+
+...
+
+// mengambil konfigurasi (pada file lain)
+$db_host = $app->config['database.host'] ?: 'localhost';
+$db_username = $app->config['database.username'] ?: 'root';
+$db_password = $app->config['database.password'] ?: '';</code></pre>
+              <p>
+                Lebih enak dipandang bukan? ya itulah kegunaan dot notation. Untuk meminimalisir isset-isset itu.
+              </p>
+              <blockquote>
+                Jika kunci (key) yang diakses dengan dot notation tidak ada, nilai yang dikembalikan adalah <code>null</code>
+              </blockquote>
+
+              <!-- CONFIGURATION:LOAD-DIR -->
+              <h4 id="config-load-dir">
+                <a href="#config-load-dir">Load Konfigurasi pada Direktori</a>
+              </h4>
+              <p>
+                Jika kamu pernah menggunakan framework-framework full stack seperti Laravel, Codeigniter, dsb kamu
+                akan menemukan kalau file konfigurasi dikumpulkan kedalam sebuah direktori yang dikelompokkan kedalam file.
+                Rakit framework memfasilitasi hal tersebut. Kamu dapat menyimpan direktori pada seisi folder cukup dengan perintah <code>loadDir($directory)</code>.
+              </p>
+              <p>
+                Pada contoh dibawah ini, dimisalkan kita memiliki 2 buah file konfigurasi pada direktori 'configs' sebagai berikut:
+              </p>
+              <pre><code class="php">&lt;?php
+// file configs/app.php
+return [
+    'base_url' => 'http://localhost:3000',
+    'debug' => true
+];
+</code></pre>
+               <pre><code class="php">&lt;?php
+// file configs/database.php
+return [
+    'host' => 'localhost',
+    'username' => 'root',
+    'password' => 's3cR3t',
+    'name' => 'my_db'
+];
+</code></pre>
+              <p>
+                Untuk mendaftarkan konfigurasi pada direktori 'configs' tersebut, gunakan perintah <code>loadDir</code> seperti dibawah ini:
+              </p>
+              <pre><code class="php">&lt;?php
+// file index.php
+
+use Rakit\Framework\App;
+
+require('vendor/autoload.php');
+
+$app = new App('my-awesome-app');
+
+// load configs
+$app->config->loadDir(__DIR__.'/configs');
+
+// then here is the results
+echo $app->config['app.base_url'];        // http://localhost:3000
+echo $app->config['app.debug'];           // 1 (true)
+echo $app->config['database.host'];       // localhost
+echo $app->config['database.username'];   // root
+echo $app->config['database.password'];   // s3cR3t
+echo $app->config['database.name'];       // my_db
+</code></pre>
+              <p>
+                Ya, nama file akan menjadi prefix dari masing-masing konfigurasi.
+              </p>
+
+              <!-- CONFIGURATION:DEBUG -->
+              <h4 id="config-debug">
+                <a href="#config-debug">Mengaktifkan Mode Debug</a>
+              </h4>
+              <p>
+                Secara default, rakit framework menonaktifkan mode debug. 
+                Jadi jika terjadi error, browser hanya akan menampilkan 'Something went wrong'.
+                Untuk mengaktifkan mode debug, set konfigurasi <code>app.debug</code> menjadi <code>true</code> seperti dibawah ini:
+              </p>
+              <pre><code class="php">&lt;?php
+              // file index.php
+
+use Rakit\Framework\App;
+
+require('vendor/autoload.php');
+
+$app = new App('my-awesome-app');
+$app->config['app.debug'] = true;
+
+</code></pre> 
+              <p>
+                Dengan begitu, jika terjadi error, aplikasi akan menampilkan sesuatu seperti ini:
+              </p>
+              <img src="/assets/img/sample-error.png" alt="Sample error">
+
+
               <h2 id="routing">
                 <a href="#routing">Routing</a>
               </h2>
@@ -344,7 +499,7 @@ $app->group('/admin', function($admin) {
                 <a href="#container">Container</a>
               </h2>
               <p>
-                TODO: write this
+                
               </p>
             </section>
           </div>
