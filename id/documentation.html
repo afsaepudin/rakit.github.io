@@ -236,12 +236,98 @@ $app->map(['GET', 'POST', 'PUT'], '/some-methods', function() {
                 <li>POST '/admin/settings'</li>                
               </ul>
 
+              <!-- MIDDLEWARE -->
               <h2 id="middleware">
                 <a href="#middleware">Middleware</a>
               </h2>
               <p>
-                TODO: write this
+                Middleware adalah sebuah fungsi yang melapisi controller, atau middleware pada lapisan dibawahnya.
+                Middleware dapat digunakan untuk filter request, manipulasi response, setup beberapa hal, dsb.
               </p>
+              <p>
+                Middleware pada rakit framework sendiri hanya dapat didaftarkan pada route atau route group.
+                Berikut contoh-contoh penggunaan middleware:
+              </p>
+              <!-- MIDDLEWARE:FILTERING -->
+              <h4 id="middleware-filtering">
+                <a href="#middleware-filtering">Middleware untuk Filter Request</a>
+              </h4>
+              <p>
+                Ini adalah fungsi yang paling umum dari middleware. Yaitu untuk autentikasi dan autorisasi.
+                Pada contoh dibawah ini kita akan membuat middleware 'auth' yang berfungsi untuk mengecek
+                apakah user sudah login atau belum berdasarkan session. 
+                Jika belum, maka tampilkan respon 401 (Unauthenticated request).
+              </p>
+              <p>
+                Pertama kamu perlu mendaftarkan middleware 'auth' tersebut:
+              </p>
+              <pre><code class="php">$app->middleware('auth', function($req, $res, $next) {
+    if (!isset($_SESSION['user_id'])) {
+        return $res->send('Unauthenticated request', 401);
+    }
+
+    return $next();
+});</code></pre>
+              <p>
+                Setelah itu, middleware 'auth' tersebut dapat kamu gunakan 
+                pada route atau route group seperti ini:
+              </p>
+              <pre><code class="php">// mendaftarkan middleware pada route 
+$app->get('/article/edit', 'ArticleController@formEdit')->auth();
+
+// mendaftarkan middleware pada route group
+$app->group('/admin', function($admin) {
+    $admin->get('/article', 'ArticleController@pageIndex');
+    $admin->get('/article/create', 'ArticleController@formCreate');
+    $admin->post('/article/create', 'ArticleController@postCreate');
+})->auth();</code></pre>
+              <p>
+                Pada contoh diatas, middleware 'auth' akan melapisi controller didalamnya, dan dijalankan terlebih dahulu
+                sebelum controller. Middleware tersebut akan mengecek apakah terdapat session 'user_id' atau tidak.
+                Jika tidak ada, aplikasi akan menampilkan 'Unauthenticated Request' dengan status 401.
+                Jika ada, middleware akan meneruskan request ke controller (lapisan dibawahnya) dengan perintah <code>$next()</code>.
+              </p>
+              <blockquote>
+                Perlu diingat kalau middleware dan controller pada rakit framework selalu menggunakan <code>return</code> untuk
+                mengembalikan hasil.
+              </blockquote>
+
+              <!-- MIDDLEWARE:MANIPULATE-RESPONSE -->
+              <h4 id="middleware-manipulate">
+                <a href="#middleware-manipulate">Middleware untuk Manipulasi Response</a>
+              </h4>
+              <p>
+                Terkadang kamu mungkin mau mengubah respon atau hasil yang dikirimkan oleh controller seperti menghapus karakter ilegal,
+                replace sesuatu, menginsert sesuatu ke JSON yang dihasilkan, dsb.
+              </p>
+              <p>
+                Pada contoh berikut ini kita akan membuat middleware 'api' yang berguna untuk menambahkan 'status' ke dalam JSON.
+              </p>
+              <p>
+                1. Mendaftarkan middleware:
+              </p>
+              <pre><code class="php">$app->middleware('api', function($req, $res, $next) {
+    $result = $next();
+    return array_merge([
+      'status' => 'ok'
+    ], $result);
+});</code></pre>
+              <p>
+                2. Mendaftarkan middleware ke route.
+              </p>
+              <pre><code class="php">$app->get('/api/something', function() {
+    return [
+        'message' => 'Hola!'
+    ];
+})->api();</code></pre>
+              <p>
+                Pada contoh diatas, jika kamu mengakses '/api/something' maka hasilnya adalah JSON sebagai berikut:
+              </p>
+              <pre><code class="javascript">{
+    "status": "ok",
+    "message": "Hola!"
+}</code></pre>
+
               <h2 id="request">
                 <a href="#request">Request</a>
               </h2>
