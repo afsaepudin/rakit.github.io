@@ -431,7 +431,7 @@ $app->map(['GET', 'POST', 'PUT'], '/some-methods', function() {
               <p>
                 Pertama kamu perlu mendaftarkan middleware 'auth' tersebut:
               </p>
-              <pre><code class="php">$app->middleware('auth', function($req, $res, $next) {
+              <pre><code class="php">$app->setMiddleware('auth', function($req, $res, $next) {
     if (!isset($_SESSION['user_id'])) {
         return $res->send('Unauthenticated request', 401);
     }
@@ -476,7 +476,7 @@ $app->group('/admin', function($admin) {
               <p>
                 1. Mendaftarkan middleware:
               </p>
-              <pre><code class="php">$app->middleware('api', function($req, $res, $next) {
+              <pre><code class="php">$app->setMiddleware('api', function($req, $res, $next) {
     $result = $next();
     return array_merge([
       'status' => 'ok'

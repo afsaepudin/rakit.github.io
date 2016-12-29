@@ -101,7 +101,7 @@ $app->delete('/delete', function() {
         <p>
           Register middleware
         </p>
-        <pre><code class="php">$app->middleware('auth', function($req, $res, $next) {
+        <pre><code class="php">$app->setMiddleware('auth', function($req, $res, $next) {
     if (!isset($_SESSION['user_id'])) {
         return $res->send('Unauthenticated Request', 401);          
     }
