@@ -342,6 +342,16 @@ ul.nav > li > a[href] {
 	color: #369a68;
 }
 
+ul.nav > li.header > a[href] {
+	color: #4b4b4b;
+}
+
+ul.nav > li.header > a[href]:hover,
+ul.nav > li.header > a[href]:active,
+ul.nav > li.header > a[href]:focus {
+	color: #369a68;
+}
+
 blockquote {
 	border-left: 3px solid #ddd;
 	margin: 0px;
