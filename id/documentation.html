@@ -341,7 +341,7 @@ $app->delete('/delete', function() {
 });
 
 // mendaftarkan beberapa method sekaligus pada sebuah route
-$app->map(['GET', 'POST', 'PUT'], '/some-methods', function() {
+$app->router->map(['GET', 'POST', 'PUT'], '/some-methods', function() {
     return 'Route ini dapat menerima metode GET, POST, dan PUT';
 });</code></pre>
               <blockquote class="warning">
