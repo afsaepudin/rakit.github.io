@@ -386,6 +386,23 @@ blockquote.info {
 	color: #385A79;
 }
 
+blockquote.quote {
+	text-align: center;
+	font-size: 1.2em;
+	position: relative;
+	background: #fafafa;
+	border-left: none;
+	color: #3A4658;
+}
+
+blockquote.quote:before,
+blockquote.quote:after {
+	content: '"';
+	font-size: 1.5em;
+	opacity: 1;
+	color: #369a68;
+}
+
 blockquote h4,
 blockquote h5 {
 	margin-bottom: 5px;
