@@ -163,6 +163,10 @@ hue-6-2: #1C9AA0
     user-select: none;
 }
 
+.content strong {
+	font-weight: bold;
+}
+
 .content h2 {
 	font-size: 1.5em;
 }
@@ -174,6 +178,15 @@ hue-6-2: #1C9AA0
 .content p code {
 	background: white;
 	border-color: #efefef;
+}
+
+.content li {
+  list-style-position: outside;
+  margin-left: 1em;
+}
+
+.content .no-margin {
+	margin: 0px;
 }
 
 .content pre code {
@@ -365,6 +378,21 @@ blockquote.warning {
 	background: #F5F0A7;
 	border-left-color: #C6B458;
 	color: #7B521E;
+}
+
+blockquote.info {
+	background: #CAE2F8;
+	border-left-color: #447FB4;
+	color: #385A79;
+}
+
+blockquote h4,
+blockquote h5 {
+	margin-bottom: 5px;
+}
+
+blockquote.font-small {
+	font-size: .9em;
 }
 
 @media (max-width: 600px) {
