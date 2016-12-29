@@ -217,6 +217,46 @@ class MyController extends Controller
           Setelah itu, kamu dapat mendaftarkan route dengan cara seperti ini:
         </p>
         <pre><code class="php">$app->post('/something', 'MyController@doSomething');</code></pre>
+
+        <!-- EXTENSIBLE -->
+        <h2 id="extensible">
+          <a href="#extensible">Kecil tapi Ekstensibel</a>
+        </h2>
+        <p>
+          Rakit framework pada dasarnya hanyalah router, http request-response, dan konfigurator.
+          Ukurannya sendiri hanya sekitar 200-300KB.
+          Namun seperti namanya 'rakit', kamu dapat merakit framework ini seperti yang kamu butuhkan.
+          Kamu dapat menambahkan kemampuan/layanan lain kedalam aplikasi
+          dengan fitur <code>ServiceProvider</code> layaknya Laravel.
+        </p>
+        <p>
+          Berikut beberapa paket yang sedang kami kembangkan:          
+        </p>
+        <ul>
+          <li>
+            <a target="_blank" href="https://github.com/rakit/validation">Rakit/Validation</a>
+            <br>
+            Library validasi ala laravel dengan sizenya yg 10 kali lebih kecil dari <code>illuminate/validation</code>.
+          </li>
+          <li>
+            <a target="_blank" href="https://github.com/rakit/blade">Rakit/Blade</a>
+            <br>
+            Jika kamu ingin menggunakan blade pada rakit.
+          </li>
+          <li>
+            <a target="_blank" href="https://github.com/rakit/session">Rakit/Session</a>
+            <br>
+            Session manager dengan fitur Flash message. Mendukung driver PDO, Cookie, File, ataupun custom sesukamu.
+          </li>
+          <li>
+            <a target="_blank" href="https://github.com/emsifa/Block">Emsifa/Block</a>
+            <br>
+            PHP native template system (bukan engine) yang terinspirasi dengan Blade. Hanya saja versi nativenya, jadi jauh lebih cepat.
+          </li>
+          <li>
+            Dan akan lebih banyak lagi. Apakah kamu salah satu creatornya?
+          </li>
+        </ul>
       </div>
     </div>
     <div class="bottom-content">
