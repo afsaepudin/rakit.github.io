@@ -376,6 +376,24 @@ $app->router->map(['GET', 'POST', 'PUT'], '/some-methods', function() {
                 </small>
               </blockquote>
 
+              <!-- ROUTING:ROUTE-CONDITIONAL-PARAMETER -->
+              <h4 id="route-optional-parameter"><a href="#route-optional-parameter">Route Conditional Parameter</a></h4>
+              <p>
+                Secara default, parameter akan menerima karakter apapun selain '/'. 
+                Jika kamu mengiginkan parameter hanya dapat menerima karakter tertentu, kamu bisa menambahkan <code>->where('param', 'regex')</code>
+                setelah mendefinisikan route. 
+              </p>
+              <p>
+                Contoh:
+              </p>
+              <pre><code class="php">$app->get('/user/:username', function() {
+    return "Halo $username";
+})->where('username', '[a-zA-Z0-9]+');</code></pre>
+              <p>
+                Dengan begitu route hanya akan dianggap cocok jika parameter 'username' terdiri dari rangkaian huruf dan angka (a-z, 0-9).
+                Bila tidak, aplikasi akan menampilkan halaman 404.
+              </p>
+
               <!-- ROUTING:ROUTE-GROUP -->
               <h4 id="route-group"><a href="#route-group">Route Group</a></h4>
               <p>
