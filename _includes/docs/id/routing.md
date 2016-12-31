@@ -53,8 +53,12 @@ $app->get('/user(/:username)', function($username = 'Anonymous') {
 });
 ```
 
-> Jika tanda '/' pada `(/:username)`ditaruh diluar menjadi seperti `/user/(:username)`
-  maka route tersebut tidak menerima '/user', melainkan harus '/user/'. 
+<blockquote>
+    <small>
+        Jika tanda '/' pada `(/:username)`ditaruh diluar menjadi seperti `/user/(:username)`
+        maka route tersebut tidak menerima '/user', melainkan harus '/user/'. 
+    </small>
+</blockquote>
 
 Secara default, parameter akan menerima karakter apapun selain '/'. 
 Jika kamu mengiginkan parameter hanya dapat menerima karakter tertentu, kamu bisa menambahkan `->where('param', 'regex')`

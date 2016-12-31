@@ -54,6 +54,9 @@
   </li>
   <li class="header"><a href="#guide">Panduan</a></li>
   <li>
+    <a href="#routing">Konfigurasi</a>
+  </li>
+  <li>
     <a href="#routing">Routing</a>
   </li>
   <li>
@@ -373,8 +376,10 @@ $app-&gt;router-&gt;map(['GET', 'POST', 'PUT'], '/some-methods', function() {
 </div>
 
 <blockquote>
-  <p>Jika tanda ‘/’ pada <code class="highlighter-rouge">(/:username)</code>ditaruh diluar menjadi seperti <code class="highlighter-rouge">/user/(:username)</code>
-  maka route tersebut tidak menerima ‘/user’, melainkan harus ‘/user/’.</p>
+    <small>
+        Jika tanda '/' pada `(/:username)`ditaruh diluar menjadi seperti `/user/(:username)`
+        maka route tersebut tidak menerima '/user', melainkan harus '/user/'. 
+    </small>
 </blockquote>
 
 <p>Secara default, parameter akan menerima karakter apapun selain ‘/’. 
