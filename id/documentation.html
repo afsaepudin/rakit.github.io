@@ -540,8 +540,8 @@ $app->group('/admin', function($admin) {
         return $res->send('Anda belum login', 401);
     }
 
-    // cek apakah level user sesuai $category
-    if ($_SESSION['user']['level'] != $category) {
+    // cek apakah kategori user sesuai $category
+    if ($_SESSION['user']['category'] != $category) {
         return $res->send('Anda tidak memiliki hak akses ke halaman ini', 403);
     }
 
