@@ -1,6 +1,6 @@
 ---
 layout: landing
-lang: en
+lang: id
 ---
 
 Rakit framework adalah PHP micro framework yang dapat membantu kamu membuat web app atau web service dengan mudah.
