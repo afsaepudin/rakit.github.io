@@ -31,7 +31,11 @@
     <div class="container">
       <div class="row">
         <div class="three columns">
-          {% include side-nav.html %}
+          {% if page.lang == 'id' %}
+            {% include side-nav.id.html %}
+          {% else %}
+            {% include side-nav.en.html %}
+          {% endif %}
         </div>
         <div class="nine columns">
           <div class="content">
