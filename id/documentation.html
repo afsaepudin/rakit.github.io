@@ -516,6 +516,52 @@ $app->group('/admin', function($admin) {
     "message": "Hola!"
 }</code></pre>
 
+              <!-- MIDDLEWARE:PARAMETER -->
+              <h4 id="middleware-parameter">
+                <a href="#middleware-parameter">Middleware dengan Parameter</a>
+              </h4>
+              <p>
+                Seringkali kita mendapatkan kasus dimana aplikasi yang kita kembangkan memiliki berbagai macam kategori user, seperti 'admin', 'guru', 'murid'.
+                Jika kamu ingin membuat middleware untuk autentikasi 3 kategori user tersebut, terdapat 2 cara. 
+              </p>
+              <p>
+                Cara pertama kamu mendaftarkan 3 buah middleware untuk masing-masing kategori. 
+                Atau kamu cukup mendaftarkan sebuah middleware yang menerima parameter.
+              </p>
+              <p>
+                Berikut contoh menggunakan parameter pada middleware untuk kasus tersebut:
+              </p>
+              <p>
+                1. Mendaftarkan middleware. Tambahkan parameter <code>$category</code> pada akhir <code>Closure</code>.
+              </p>
+              <pre><code class="php">$app->setMiddleware('auth', function($req, $res, $next, $category) {
+    // cek apakah user sudah login
+    if (!isset($_SESSION['user']) OR !is_array($_SESSION['user'])) {
+        return $res->send('Anda belum login', 401);
+    }
+
+    // cek apakah level user sesuai $category
+    if ($_SESSION['user']['level'] != $category) {
+        return $res->send('Anda tidak memiliki hak akses ke halaman ini', 403);
+    }
+
+    return $next();
+});</code></pre>
+              <p>
+                2. Mendaftarkan middleware ke route. Masukkan parameter ke middleware <code>auth</code> yang telah dibuat.
+              </p>
+              <pre><code class="php">$app->get('/admin/dashboard', function() {
+    return "Halo admin";
+})->auth('admin');
+
+$app->get('/guru/dashboard', function() {
+    return "Halo guru";
+})->auth('guru');
+
+$app->get('/murid/dashboard', function() {
+    return "Halo Murid";
+})->auth('murid');</code></pre>
+
               <h2 id="request">
                 <a href="#request">Request</a>
               </h2>
