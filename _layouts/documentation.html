@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="{% if page.lang %}{{ page.lang }}{% else %}en{% endif %}">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no"/>
+  <meta name="theme-color" content="#ffffff"/>
+  <meta name="description" content="Yet another PHP micro framework to help you build web app or web service with ease." />
+  <meta name="ogUrl" property="og:url" content="{{ site.hosturl }}{{ page.url }}" />
+  <meta name="ogType" property="og:type" content="article" />
+  <meta name="ogTitle" property="og:title" content="Rakit Framework - Documentation" />
+  <meta name="ogDescription" property="og:description" content="Yet another PHP micro framework to help you build web app or web service with ease." />
+  <meta name="ogImage" property="og:image" content="{{ site.hosturl }}/assets/img/fb-cover.png" />
+
+  <title>{% if page.title %}{{ page.title }} &middot; {% endif %}Rakit Framework</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
+  <link rel="stylesheet" href="/assets/css/style.min.css">
+</head>
+<body class="page-with-navbar">
+  <header class="navbar">
+    <div class="container">
+      <a href="index.html" class="navbar-brand">
+        <img src="/assets/img/logo-navbar.png">
+      </a>
+      <div class="navbar-right">
+        {% include navbar-nav.html %}
+      </div>
+    </div>
+  </header>
+  <main>
+    <div class="container">
+      <div class="row">
+        <div class="three columns">
+          {% if page.lang == 'id' %}
+            {% include side-nav.id.html %}
+          {% else %}
+            {% include side-nav.en.html %}
+          {% endif %}
+        </div>
+        <div class="nine columns">
+          <div class="content">
+          {{content}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer>
+    <div class="container">
+      &copy; 2016 Rakit Framework <span class="text-muted">|</span> <a href="https://github.com/rakit/framework">github</a>
+    </div>
+  </footer>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/highlight.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad();
+  </script>
+</body>
+</html>

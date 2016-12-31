@@ -374,6 +374,10 @@ blockquote {
 	color: #666;
 }
 
+blockquote p {
+	margin: 0px;
+}
+
 blockquote.warning {
 	background: #F5F0A7;
 	border-left-color: #C6B458;
