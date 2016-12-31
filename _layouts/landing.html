@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{% if page.lang %}{{ page.lang }}{% else %}en{% endif %}">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no"/>
@@ -11,7 +11,7 @@
   <meta name="ogDescription" property="og:description" content="Yet another PHP micro framework to help you build web app or web service with ease." />
   <meta name="ogImage" property="og:image" content="https://rakit.github.io/assets/img/fb-cover.png" />
 
-  <title>Rakit Framework</title>
+  <title>{% if page.title %}{{ page.title }}  &middot; {% endif %}Rakit Framework</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
   <link rel="stylesheet" href="/assets/css/style.min.css">
@@ -52,179 +52,26 @@ $app->run();</code></pre>
     </div>
     <div class="container">
       <div class="content">
-        <p>
-          Rakit framework is another yet PHP micro framework to help you build web app or web service with ease.
-        </p>
-
-        <!-- REST -->
-        <h2 id="rest">
-          <a href="#rest">REST, of Course</a>
-        </h2>
-        <pre><code class="php">$app->get('/get', function() {
-    return 'You are access this using GET method';
-});
-
-$app->post('/post', function() {
-    return 'You are access this using POST method';
-});
-
-$app->put('/put', function() {
-    return 'You are access this using PUT method';
-});
-
-$app->patch('/patch', function() {
-    return 'You are access this using PATCH method';
-});
-
-$app->delete('/delete', function() {
-    return 'You are access this using DELETE method';
-});</code></pre>
-
-        <!-- JSON RESPONSE -->
-        <h2 id="json-response">
-          <a href="#json-response">JSON? Easy</a>
-        </h2>
-        <p>
-          Just return an array to response JSON. We will <code>json_encode()</code> it for you.
-        </p>
-        <pre><code class="php">$app->get('/example.json', function() {
-    return [
-        'status' => 'ok',
-        'message' => 'easy right?'
-    ];
-});</code></pre>
-
-        <!-- MIDDLEWARE -->
-        <h2 id="middleware">
-          <a href="#middleware">Yes, We Also Have Middleware</a>
-        </h2>
-        <p>
-          Register middleware
-        </p>
-        <pre><code class="php">$app->setMiddleware('auth', function($req, $res, $next) {
-    if (!isset($_SESSION['user_id'])) {
-        return $res->send('Unauthenticated Request', 401);          
-    }
-
-    return $next();
-});</code></pre>
-        <p>
-          Use it
-        </p>
-        <pre><code class="php">$app->get('/admin', function() {
-    return 'Hola Admin';
-})->auth();</code></pre>
-
-        <!-- AUTOMATIC INJECTION -->
-        <h2 id="automatic-injection">
-          <a href="#automatic-injection">Automatic Injection</a>
-        </h2>
-        <p>
-          Hint a class you need in arguments. We will inject its instance automatically.
-        </p>
-        <pre><code class="php">...
-
-use Rakit\Framework\Http\Request;
-
-... 
-
-$app->post('/login', function(Request $req) {
-    $username = $req->get('username');
-    $password = $req->get('password');
-    ...
-});</code></pre>
-
-        <!-- UPLOAD FILE -->
-        <h2 id="upload-file">
-          <a href="#upload-file">Elegant Upload File Syntax</a>
-        </h2>
-        <p>
-          Single upload file:
-        </p>
-        <pre><code class="php">$app->post('/profile', function(Request $req) {
-    $avatar = $req->file('avatar');
-    if ($avatar) {
-        $avatar->name = 'new-name';
-        $avatar->move('my/upload/dir');
-    }
-});</code></pre>
-<p>
-          Multiple upload file:
-        </p>
-        <pre><code class="php">$app->post('/upload-images', function(Request $req) {
-    $images = $req->multiFiles('images');
-    foreach ($images as $i => $image) {
-        $image->name = 'image-' . ($i + 1);
-        $image->move('my/upload/dir');
-    }
-});</code></pre>
-
-        <!-- DOT NOTATION -->
-        <h2 id="dot-notation">
-          <a href="#dot-notation">Dot Notation</a>
-        </h2>
-        <p>
-          Access configuration or request data with ease using dot notation:
-        </p>
-        <pre><code class="php">// init App with some configs
-$app = new App('my-awesome-app', [
-    'product' => [
-        'image_path' => '/uploads/products',
-    ] 
-]);
-
-...
-
-$app->post('/something', function(App $app, Request $req) {
-    $productImagePath = $app->config['product.image_path'];
-    $productId = $req->get('product.id'); // will retrieve $_POST['product']['id']
-    ...
-});
-
-...
-</code></pre>
-
-        <!-- CONTROLLER -->
-        <h2 id="controller">
-          <a href="#controller">How About Using Controller Class?</a>
-        </h2>
-        <p>
-          Ups, I almost forgot it. Here you go:
-        </p>
-        <p>
-          First, create your controller class:
-        </p>
-        <pre><code class="php">&lt;?php
-
-use Rakit\Framework\Controller;
-
-class MyController extends Controller
-{
-
-    public function doSomething()
-    {
-        // $this here refer to App instance
-        $config = $this->config['any.config'];
-        $file = $this->request->file('a_file');
-    }
-
-}
-</code></pre>
-        <p>
-          Then you just need to put this in route:
-        </p>
-        <pre><code class="php">$app->post('/something', 'MyController@doSomething');</code></pre>
+        {{content}}
       </div>
     </div>
     <div class="bottom-content">
       <div class="container">
+        {% if page.lang == 'id' %}
+        <div class="content">
+          <h1>Tertarik?</h1>
+          <a href="documentation.html#installation" class="button button-primary button-lg">INSTALL</a>
+          <a href="documentation.html#getting-started" class="button button-secondary button-lg">DOKUMENTASI</a>
+        </div>
+        {% else %}
         <div class="content">
           <h1>Interested?</h1>
           <a href="documentation.html#installation" class="button button-primary button-lg">INSTALL</a>
           <a href="documentation.html#getting-started" class="button button-secondary button-lg">DOCUMENTATION</a>
         </div>
+        {% endif %}
       </div>
-    </div>    
+    </div>
   </main>
   <footer>
     <div class="container">
