@@ -7,6 +7,7 @@ lang: en
 {% include docs/en/getting-started.md %}
               
 <a id="guide"></a>
+
 # Guide
 
 {% include docs/en/configuration.md %}

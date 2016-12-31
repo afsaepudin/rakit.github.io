@@ -1,13 +1,16 @@
 <a id="getting-started"></a>
+
 # Getting Started
 
 <a id="requirements"></a>
+
 ## [Requirements](#requirements)
 
 * PHP 5.5 or higher.
 * Composer for installation
 
 <a id="installation"></a>
+
 ## [Installation](#installation)
 
 First, create your project directory.
@@ -24,6 +27,7 @@ composer require "rakit/framework"
 ```
 
 <a id="hello-world"></a>
+
 ## [Hello World](#hello-world)
 
 Create index.php, and write scripts below:

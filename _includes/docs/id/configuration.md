@@ -1,5 +1,6 @@
 
 <a id="configuration"></a>
+
 ## [Konfigurasi](#configuration)
 
 Rakit framework pada dasarnya dapat berjalan tanpa konfigurasi apapun.
@@ -9,6 +10,7 @@ Rakit framework menyajikan beberapa API untuk mempermudah hal tersebut.
 Berikut adalah beberapa hal yang mesti kamu ketahui tentang konfigurasi pada Rakit framework:  
 
 <a id="config-get-set"></a>
+
 #### [Get/Set Konfigurasi](#config-get-set)
 
 Konfigurasi pada rakit framework tersimpan pada objek `config`
@@ -26,6 +28,7 @@ echo $app->config['something'];
 ```
 
 <a id="config-dot-notation"></a>
+
 #### [Memahami Dot Notation pada Konfigurasi](#config-dot-notation)
 
 Perlu kamu ketahui, rakit framework memiliki kemampuan untuk mengambil konfigurasi dengan dot notation.
@@ -71,6 +74,7 @@ Lebih enak dipandang bukan? ya itulah kegunaan dot notation. Untuk meminimalisir
 > Jika kunci (key) yang diakses dengan dot notation tidak ada, nilai yang dikembalikan adalah `null`
 
 <a id="config-load-dir"></a>
+
 #### [Load Konfigurasi pada Direktori](#config-load-dir)
 
 Jika kamu pernah menggunakan framework-framework full stack seperti Laravel, Codeigniter, dsb kamu
@@ -126,6 +130,7 @@ echo $app->config['database.name'];       // my_db
 Ya, nama file akan menjadi prefix dari masing-masing konfigurasi.
 
 <a id="config-debug"></a>
+
 #### [Mengaktifkan Mode Debug](#config-debug)
 
 Secara default, rakit framework menonaktifkan mode debug. 

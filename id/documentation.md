@@ -23,6 +23,7 @@ lang: id
 {% include docs/id/getting-started.md %}
               
 <a id="guide"></a>
+
 # Panduan
 
 {% include docs/id/configuration.md %}

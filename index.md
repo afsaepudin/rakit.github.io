@@ -6,6 +6,7 @@ lang: en
 Rakit framework is another yet PHP micro framework to help you build web app or web service with ease.
 
 <a id="rest"></a>
+
 ## [REST, of Course](#rest)
 
 ```php
@@ -31,6 +32,7 @@ $app->delete('/delete', function() {
 ```
 
 <a id="json-response"></a>
+
 ## [JSON? Easy](#json-response)
 
 Just return an array to response JSON. We will `json_encode()` it for you.
@@ -45,6 +47,7 @@ $app->get('/example.json', function() {
 ```
 
 <a id="middleware"></a>
+
 ## [Yes, We Also Have Middleware](#middleware)
 
 Register middleware
@@ -68,6 +71,7 @@ $app->get('/admin', function() {
 ```
 
 <a id="automatic-injection"></a>
+
 ## [Automatic Injection](#automatic-injection)
 
 Hint a class you need in arguments. We will inject its instance automatically.
@@ -89,6 +93,7 @@ $app->post('/login', function(Request $req) {
 ```
 
 <a id="upload-file"></a>
+
 ## [Elegant Upload File Syntax](#upload-file)
 
 Single upload file:
@@ -116,6 +121,7 @@ $app->post('/upload-images', function(Request $req) {
 ```
 
 <a id="dot-notation"></a>
+
 ## [Dot Notation](#dot-notation)
 
 Access configuration or request data with ease using dot notation:
@@ -141,6 +147,7 @@ $app->post('/something', function(App $app, Request $req) {
 ```
 
 <a id="controller"></a>
+
 ## [How About Using Controller Class?](#controller)
 
 Ups, I almost forgot it. Here you go:
