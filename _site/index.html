@@ -81,7 +81,9 @@ $app-&gt;delete('/delete', function() {
 
 <p><a id="json-response"></a></p>
 <h2 id="json-easy"><a href="#json-response">JSON? Easy</a></h2>
-<p>Just return an array to response JSON. We will <code>json_encode()</code> it for you.</p>
+
+<p>Just return an array to response JSON. We will <code class="highlighter-rouge">json_encode()</code> it for you.</p>
+
 <div class="language-php highlighter-rouge"><pre class="highlight"><code>$app-&gt;get('/example.json', function() {
     return [
         'status' =&gt; 'ok',
@@ -130,6 +132,8 @@ $app-&gt;post('/login', function(Request $req) {
     $password = $req-&gt;get('password');
     ...
 });
+
+...
 </code></pre>
 </div>
 

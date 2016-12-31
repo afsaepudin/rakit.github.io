@@ -32,7 +32,9 @@ $app->delete('/delete', function() {
 
 <a id="json-response"></a>
 ## [JSON? Easy](#json-response)
-Just return an array to response JSON. We will <code>json_encode()</code> it for you.
+
+Just return an array to response JSON. We will `json_encode()` it for you.
+
 ```php
 $app->get('/example.json', function() {
     return [
@@ -82,6 +84,8 @@ $app->post('/login', function(Request $req) {
     $password = $req->get('password');
     ...
 });
+
+...
 ```
 
 <a id="upload-file"></a>

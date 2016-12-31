@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no"/>
   <meta name="theme-color" content="#3A4658"/>
   <meta name="description" content="Yet another PHP micro framework to help you build web app or web service with ease." />
-  <meta name="ogUrl" property="og:url" content="https://rakit.github.com/documentation.html" />
+  <meta name="ogUrl" property="og:url" content="https://rakit.github.io/documentation.html" />
   <meta name="ogType" property="og:type" content="article" />
   <meta name="ogTitle" property="og:title" content="Rakit - PHP Micro Framework" />
   <meta name="ogDescription" property="og:description" content="Yet another PHP micro framework to help you build web app or web service with ease." />
@@ -52,232 +52,237 @@ $app->run();</code></pre>
     </div>
     <div class="container">
       <div class="content">
-        <p>
-          Rakit framework adalah PHP micro framework yang dapat membantu kamu membuat web app atau web service dengan mudah.
-          Rakit framework pada dasarnya terinspirasi dari Laravel dan Slim framework. 
-          Untuk itu beberapa penggunaan akan terlihat mirip-mirip dengan framework tersebut.
-        </p>
+        <p>Rakit framework adalah PHP micro framework yang dapat membantu kamu membuat web app atau web service dengan mudah.
+Rakit framework pada dasarnya terinspirasi dari Laravel dan Slim framework. 
+Untuk itu beberapa penggunaan akan terlihat mirip-mirip dengan framework tersebut.</p>
 
-        <!-- REST -->
-        <h2 id="rest">
-          <a href="#rest">Mendukung REST</a>
-        </h2>
-        <pre><code class="php">$app->get('/get', function() {
+<p><a id="rest"></a></p>
+<h2 id="mendukung-rest"><a href="#rest">Mendukung REST</a></h2>
+
+<div class="language-php highlighter-rouge"><pre class="highlight"><code>$app-&gt;get('/get', function() {
     return 'You are access this using GET method';
 });
 
-$app->post('/post', function() {
+$app-&gt;post('/post', function() {
     return 'You are access this using POST method';
 });
 
-$app->put('/put', function() {
+$app-&gt;put('/put', function() {
     return 'You are access this using PUT method';
 });
 
-$app->patch('/patch', function() {
+$app-&gt;patch('/patch', function() {
     return 'You are access this using PATCH method';
 });
 
-$app->delete('/delete', function() {
+$app-&gt;delete('/delete', function() {
     return 'You are access this using DELETE method';
-});</code></pre>
+});
+</code></pre>
+</div>
 
-        <!-- JSON RESPONSE -->
-        <h2 id="json-response">
-          <a href="#json-response">Menghasilkan JSON Lebih Mudah</a>
-        </h2>
-        <p>
-          Cukup return sebuah array untuk menghasilkan respon berupa json.
-        </p>
-        <pre><code class="php">$app->get('/example.json', function() {
+<p><a id="json-response"></a></p>
+<h2 id="menghasilkan-json-lebih-mudah"><a href="#json-response">Menghasilkan JSON Lebih Mudah</a></h2>
+
+<p>Cukup return sebuah array untuk menghasilkan respon berupa json.</p>
+
+<div class="language-php highlighter-rouge"><pre class="highlight"><code>$app-&gt;get('/example.json', function() {
     return [
-        'status' => 'ok',
-        'message' => 'easy right?'
+        'status' =&gt; 'ok',
+        'message' =&gt; 'easy right?'
     ];
-});</code></pre>
+});
+</code></pre>
+</div>
 
-        <!-- MIDDLEWARE -->
-        <h2 id="middleware">
-          <a href="#middleware">Kami Juga Mendukung Middleware Loh</a>
-        </h2>
-        <p>
-          Mendaftarkan middleware
-        </p>
-        <pre><code class="php">$app->setMiddleware('auth', function($req, $res, $next) {
+<p><a id="middleware"></a></p>
+<h2 id="kami-juga-mendukung-middleware-loh"><a href="#middleware">Kami Juga Mendukung Middleware Loh</a></h2>
+
+<p>Mendaftarkan middleware</p>
+
+<div class="language-php highlighter-rouge"><pre class="highlight"><code>$app-&gt;setMiddleware('auth', function($req, $res, $next) {
     if (!isset($_SESSION['user_id'])) {
-        return $res->send('Unauthenticated Request', 401);          
+        return $res-&gt;send('Unauthenticated Request', 401);          
     }
 
     return $next();
-});</code></pre>
-        <p>
-          Lalu masukkan ke route untuk menggunakan middleware tersebut
-        </p>
-        <pre><code class="php">$app->get('/admin', function() {
-    return 'Hola Admin';
-})->auth();</code></pre>
+});
+</code></pre>
+</div>
 
-        <!-- AUTOMATIC INJECTION -->
-        <h2 id="automatic-injection">
-          <a href="#automatic-injection">Automatic Injection</a>
-        </h2>
-        <p>
-          Kami memiliki container yang dapat melihat kebutuhan method pada route handler dan constructor kamu.
-          Cukup beri hint pada argumen di route handler atau constructor kamu,
-          container kami akan meng-inject object yang diperlukan secara otomatis!
-        </p>
-        <pre><code class="php">...
+<p>Lalu masukkan ke route untuk menggunakan middleware tersebut</p>
+
+<div class="language-php highlighter-rouge"><pre class="highlight"><code>$app-&gt;get('/admin', function() {
+    return 'Hola Admin';
+})-&gt;auth();
+</code></pre>
+</div>
+
+<p><a id="automatic-injection"></a></p>
+<h2 id="automatic-injection"><a href="#automatic-injection">Automatic Injection</a></h2>
+
+<p>Kami memiliki container yang dapat melihat kebutuhan method pada route handler dan constructor kamu.
+Cukup beri hint pada argumen di route handler atau constructor kamu,
+container kami akan meng-inject object yang diperlukan secara otomatis!</p>
+
+<div class="language-php highlighter-rouge"><pre class="highlight"><code>...
 
 use Rakit\Framework\Http\Request;
 
 ... 
 
-$app->post('/login', function(Request $req) {
-    $username = $req->get('username');
-    $password = $req->get('password');
-    ...
-});</code></pre>
-
-        <!-- UPLOAD FILE -->
-        <h2 id="upload-file">
-          <a href="#upload-file">Elegant Upload File Syntax</a>
-        </h2>
-        <p>
-          Upload single file:
-        </p>
-        <pre><code class="php">$app->post('/profile', function(Request $req) {
-    $avatar = $req->file('avatar');
-    if ($avatar) {
-        $avatar->name = 'new-name';
-        $avatar->move('my/upload/dir');
-    }
-});</code></pre>
-<p>
-          Upload multiple file:
-        </p>
-        <pre><code class="php">$app->post('/upload-images', function(Request $req) {
-    $images = $req->multiFiles('images');
-    foreach ($images as $i => $image) {
-        $image->name = 'image-' . ($i + 1);
-        $image->move('my/upload/dir');
-    }
-});</code></pre>
-
-        <!-- DOT NOTATION -->
-        <h2 id="dot-notation">
-          <a href="#dot-notation">Dot Notation</a>
-        </h2>
-        <p>
-          Disini mengakses array konfigurasi dan request data lebih mudah dengan dot notation. Tidak perlu lagi isset-isset apalah itu.
-        </p>
-        <pre><code class="php">// init App with some configs
-$app = new App('my-awesome-app', [
-    'product' => [
-        'image_path' => '/uploads/products',
-    ] 
-]);
-
-...
-
-$app->post('/something', function(Request $req) {
-    $productImagePath = $this->config['product.image_path'];
-    $productId = $req->get('product.id'); // will retrieve $_POST['product']['id']
+$app-&gt;post('/login', function(Request $req) {
+    $username = $req-&gt;get('username');
+    $password = $req-&gt;get('password');
     ...
 });
 
 ...
 </code></pre>
+</div>
 
-        <!-- CONTROLLER -->
-        <h2 id="controller">
-          <a href="#controller">Menggunakan Controller Class Sebagai Route Handler</a>
-        </h2>
-        <p>
-          Bisa kok, begini caranya:
-        </p>
-        <p>
-          Pertama, siapkan controller class dulu pastinya:
-        </p>
-        <pre><code class="php">&lt;?php
+<p><a id="upload-file"></a></p>
+<h2 id="elegant-upload-file-syntax"><a href="#upload-file">Elegant Upload File Syntax</a></h2>
 
-use Rakit\Framework\Controller;
+<p>Upload single file:</p>
 
-class MyController extends Controller
-{
-
-    public function doSomething()
-    {
-        $config = $this->config['any.config'];
-        $file = $this->request->file('a_file');
+<div class="language-php highlighter-rouge"><pre class="highlight"><code>$app-&gt;post('/profile', function(Request $req) {
+    $avatar = $req-&gt;file('avatar');
+    if ($avatar) {
+        $avatar-&gt;name = 'new-name';
+        $avatar-&gt;move('my/upload/dir');
     }
-
-}
+});
 </code></pre>
-        <p>
-          Setelah itu, kamu dapat mendaftarkan route dengan cara seperti ini:
-        </p>
-        <pre><code class="php">$app->post('/something', 'MyController@doSomething');</code></pre>
+</div>
 
-        <!-- EXTENSIBLE -->
-        <h2 id="extensible">
-          <a href="#extensible">Kecil tapi Ekstensibel</a>
-        </h2>
-        <blockquote class="quote text-center">
-          <strong>Install it when you need it</strong>
-        </blockquote>
-        <p>
-          Begitulah slogan rakit framework pada awal pembuatannya. 
-          Maksudnya adalah <strong>cukup install apa yang kamu perlukan</strong>.
-          Rakit framework sendiri dibuat berdasarkan beberapa keluhan terkait size Laravel yang dianggap berlebihan,
-          sementara beberapa fiturnya seringkali tidak diperlukan.
-        </p>
-        <p>
-          Framework ini pada dasarnya hanyalah router, http request-response, dan konfigurator.
-          Ukurannya sendiri hanya sekitar 200-300KB.
-          Namun seperti namanya 'rakit', kamu dapat merakit framework ini sesuai keperluan kamu.
-          Kamu dapat menambahkan kemampuan/layanan lain kedalam aplikasi
-          dengan fitur <code>ServiceProvider</code> layaknya Laravel.
-        </p>
-        <p>
-          Berikut beberapa paket yang sedang kami kembangkan:          
-        </p>
-        <ul>
-          <li>
-            <a target="_blank" href="https://github.com/rakit/validation">Rakit/Validation</a>
-            <br>
-            Library validasi ala laravel dengan sizenya yang 10 kali lebih kecil dari <code>illuminate/validation</code>.
-          </li>
-          <li>
-            <a target="_blank" href="https://github.com/rakit/blade">Rakit/Blade</a>
-            <br>
-            Jika kamu ingin menggunakan blade pada rakit.
-          </li>
-          <li>
-            <a target="_blank" href="https://github.com/rakit/session">Rakit/Session</a>
-            <br>
-            Session manager dengan fitur Flash message. Mendukung driver PDO, Cookie, File, ataupun custom sesukamu.
-          </li>
-          <li>
-            <a target="_blank" href="https://github.com/emsifa/Block">Emsifa/Block</a>
-            <br>
-            PHP native template system (bukan engine) yang terinspirasi dari Blade. 
-            Hanya saja versi nativenya, jadi tidak butuh proses kompilasi dan caching, jadi performa lebih cepat.
-          </li>
-          <li>
-            Dan akan hadir lebih banyak lagi. Apakah kamu salah satu kreatornya?
-          </li>
-        </ul>
+<p>Multiple upload file:</p>
+
+<div class="language-php highlighter-rouge"><pre class="highlight"><code>$app-&gt;post('/upload-images', function(Request $req) {
+    $images = $req-&gt;multiFiles('images');
+    foreach ($images as $i =&gt; $image) {
+        $image-&gt;name = 'image-' . ($i + 1);
+        $image-&gt;move('my/upload/dir');
+    }
+});
+</code></pre>
+</div>
+
+<p><a id="dot-notation"></a></p>
+<h2 id="dot-notation"><a href="#dot-notation">Dot Notation</a></h2>
+
+<p>Disini mengakses array konfigurasi dan request data lebih mudah dengan dot notation. Tidak perlu lagi isset-isset apalah itu.</p>
+
+<div class="language-php highlighter-rouge"><pre class="highlight"><code>// init App with some configs
+$app = new App('my-awesome-app', [
+    'product' =&gt; [
+        'image_path' =&gt; '/uploads/products',
+    ] 
+]);
+
+...
+
+$app-&gt;post('/something', function(App $app, Request $req) {
+    $productImagePath = $app-&gt;config['product.image_path'];
+    $productId = $req-&gt;get('product.id'); // will retrieve $_POST['product']['id']
+    ...
+});
+
+...
+</code></pre>
+</div>
+
+<p><a id="controller"></a></p>
+<h2 id="menggunakan-controller-class-sebagai-route-handler"><a href="#controller">Menggunakan Controller Class Sebagai Route Handler</a></h2>
+
+<p>Bisa kok, begini caranya:</p>
+
+<p>Pertama, siapkan controller class dulu pastinya:</p>
+
+<div class="language-php highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+
+<span class="k">use</span> <span class="nx">Rakit\Framework\Controller</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">MyController</span> <span class="k">extends</span> <span class="nx">Controller</span>
+<span class="p">{</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">doSomething</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="c1">// $this here refer to App instance
+</span>        <span class="nv">$config</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">config</span><span class="p">[</span><span class="s1">'any.config'</span><span class="p">];</span>
+        <span class="nv">$file</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">request</span><span class="o">-&gt;</span><span class="na">file</span><span class="p">(</span><span class="s1">'a_file'</span><span class="p">);</span>
+    <span class="p">}</span>
+
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>Setelah itu, kamu dapat mendaftarkan route dengan cara seperti ini:</p>
+
+<div class="language-php highlighter-rouge"><pre class="highlight"><code>$app-&gt;post('/something', 'MyController@doSomething');
+</code></pre>
+</div>
+
+<p><a id="extensible"></a></p>
+<h2 id="kecil-tapi-ekstensibel"><a href="#extensible">Kecil tapi Ekstensibel</a></h2>
+
+<blockquote class="quote text-center">
+  <strong>Install it when you need it</strong>
+</blockquote>
+
+<p>Begitulah slogan rakit framework pada awal pembuatannya. 
+Maksudnya adalah <strong>cukup install apa yang kamu perlukan</strong>.
+Rakit framework sendiri dibuat berdasarkan beberapa keluhan terkait size Laravel yang dianggap berlebihan,
+sementara beberapa fiturnya seringkali tidak diperlukan.</p>
+
+<p>Framework ini pada dasarnya hanyalah router, http request-response, dan konfigurator.
+Ukurannya sendiri hanya sekitar 200-300KB.
+Namun seperti namanya ‘rakit’, kamu dapat merakit framework ini sesuai keperluan kamu.
+Kamu dapat menambahkan kemampuan/layanan lain kedalam aplikasi
+dengan fitur <code class="highlighter-rouge">ServiceProvider</code> layaknya Laravel.</p>
+
+<p>Berikut beberapa paket yang juga sedang kami kembangkan:</p>
+
+<ul>
+  <li>
+    <a target="_blank" href="https://github.com/rakit/validation">Rakit/Validation</a>
+    <br />
+    Library validasi ala laravel dengan sizenya yang 10 kali lebih kecil dari `illuminate/validation`.
+  </li>
+  <li>
+    <a target="_blank" href="https://github.com/rakit/blade">Rakit/Blade</a>
+    <br />
+    Jika kamu ingin menggunakan blade pada rakit.
+  </li>
+  <li>
+    <a target="_blank" href="https://github.com/rakit/session">Rakit/Session</a>
+    <br />
+    Session manager dengan fitur Flash message. Mendukung driver PDO, Cookie, File, ataupun custom sesukamu.
+  </li>
+  <li>
+    <a target="_blank" href="https://github.com/emsifa/Block">Emsifa/Block</a>
+    <br />
+    PHP native template system (bukan engine) yang terinspirasi dari Blade. 
+    Hanya saja versi nativenya, jadi tidak butuh proses kompilasi dan caching, jadi performa lebih cepat.
+  </li>
+  <li>
+    Dan akan hadir lebih banyak lagi. Apakah kamu salah satu kreatornya?
+  </li>
+</ul>
+
       </div>
     </div>
     <div class="bottom-content">
       <div class="container">
+        
         <div class="content">
-          <h1>Tertarik?</h1>
+          <h1>Interested?</h1>
           <a href="documentation.html#installation" class="button button-primary button-lg">INSTALL</a>
-          <a href="documentation.html#getting-started" class="button button-secondary button-lg">DOKUMENTASI</a>
+          <a href="documentation.html#getting-started" class="button button-secondary button-lg">DOCUMENTATION</a>
         </div>
+        
       </div>
-    </div>    
+    </div>
   </main>
   <footer>
     <div class="container">
