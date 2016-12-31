@@ -522,14 +522,18 @@ $app->group('/admin', function($admin) {
               </h4>
               <p>
                 Seringkali kita mendapatkan kasus dimana aplikasi yang kita kembangkan memiliki berbagai macam kategori user, seperti 'admin', 'guru', 'murid'.
-                Jika kamu ingin membuat middleware untuk autentikasi 3 kategori user tersebut, terdapat 2 cara. 
+                Jika kamu ingin membuat middleware untuk autentikasi 3 kategori user tersebut, terdapat 2 cara, yaitu: 
               </p>
+              <ol>
+                <li>
+                  Buat 3 buah middleware untuk masing-masing kategori. 
+                </li>
+                <li>
+                  Cukup buat sebuah middleware yang menerima parameter.
+                </li>
+              </ol>
               <p>
-                Cara pertama kamu mendaftarkan 3 buah middleware untuk masing-masing kategori. 
-                Atau kamu cukup mendaftarkan sebuah middleware yang menerima parameter.
-              </p>
-              <p>
-                Berikut contoh menggunakan parameter pada middleware untuk kasus tersebut:
+                Berikut contoh penggunaan middleware dengan parameter untuk kasus tersebut:
               </p>
               <p>
                 1. Mendaftarkan middleware. Tambahkan parameter <code>$category</code> pada akhir <code>Closure</code>.
