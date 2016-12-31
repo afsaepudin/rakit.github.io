@@ -1,6 +1,7 @@
 ---
 layout: landing
 lang: en
+title: Rakit Framework &middot; Yet Another PHP Micro Framework
 ---
 
 Rakit framework is another yet PHP micro framework to help you build web app or web service with ease.
