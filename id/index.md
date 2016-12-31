@@ -8,6 +8,7 @@ Rakit framework pada dasarnya terinspirasi dari Laravel dan Slim framework.
 Untuk itu beberapa penggunaan akan terlihat mirip-mirip dengan framework tersebut.
 
 <a id="rest"></a>
+
 ## [Mendukung REST](#rest)
 
 ```php
@@ -33,6 +34,7 @@ $app->delete('/delete', function() {
 ```
 
 <a id="json-response"></a>
+
 ## [Menghasilkan JSON Lebih Mudah](#json-response)
 
 Cukup return sebuah array untuk menghasilkan respon berupa json.
@@ -47,6 +49,7 @@ $app->get('/example.json', function() {
 ```
 
 <a id="middleware"></a>
+
 ## [Kami Juga Mendukung Middleware Loh](#middleware)
 
 
@@ -71,6 +74,7 @@ $app->get('/admin', function() {
 ```
 
 <a id="automatic-injection"></a>
+
 ## [Automatic Injection](#automatic-injection)
 
 Kami memiliki container yang dapat melihat kebutuhan method pada route handler dan constructor kamu.
@@ -94,6 +98,7 @@ $app->post('/login', function(Request $req) {
 ```
 
 <a id="upload-file"></a>
+
 ## [Elegant Upload File Syntax](#upload-file)
 
 Upload single file:
@@ -121,6 +126,7 @@ $app->post('/upload-images', function(Request $req) {
 ```
 
 <a id="dot-notation"></a>
+
 ## [Dot Notation](#dot-notation)
 
 Disini mengakses array konfigurasi dan request data lebih mudah dengan dot notation. Tidak perlu lagi isset-isset apalah itu.
@@ -145,6 +151,7 @@ $app->post('/something', function(App $app, Request $req) {
 ```
 
 <a id="controller"></a>
+
 ## [Menggunakan Controller Class Sebagai Route Handler](#controller)
 
 Bisa kok, begini caranya:
@@ -176,6 +183,7 @@ $app->post('/something', 'MyController@doSomething');
 ```
 
 <a id="extensible"></a>
+
 ## [Kecil tapi Ekstensibel](#extensible)
 
 <blockquote class="quote text-center">

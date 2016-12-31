@@ -1,5 +1,6 @@
 
 <a id="routing"></a>
+
 ## [Routing](#routing)
 
 Berikut ini method yang dapat kamu gunakan untuk mendaftarkan route:
@@ -33,6 +34,10 @@ $app->router->map(['GET', 'POST', 'PUT'], '/some-methods', function() {
 
 > Catatan: Setiap route pada rakit framework harus diawali dengan '/'
 
+<a id="route-parameter"></a>
+
+#### [Route Parameter](#route-parameter)
+
 Untuk mendaftarkan parameter pada route, gunakan `:nama_parameter`seperti kode berikut:
 
 ```php
@@ -42,6 +47,10 @@ $app->get('/user/:username', function($username) {
 ```
 
 Kode diatas memungkinkan kamu untuk mengakses '/user/foo', '/user/123', '/user/foo123', dsb.
+
+<a id="route-optional-parameter"></a>
+
+#### [Route Optional Parameter](#route-optional-parameter)
 
 Gunakan tanda kurung pada path dan parameter yang ingin dijadikan optional, lalu set nilai default pada argumen parameter tersebut.
 
@@ -60,6 +69,10 @@ $app->get('/user(/:username)', function($username = 'Anonymous') {
     </small>
 </blockquote>
 
+<a id="route-conditional-parameter"></a>
+
+#### [Route Conditional Parameter](#route-conditional-parameter)
+
 Secara default, parameter akan menerima karakter apapun selain '/'. 
 Jika kamu mengiginkan parameter hanya dapat menerima karakter tertentu, kamu bisa menambahkan `->where('param', 'regex')`
 setelah mendefinisikan route. 
@@ -74,6 +87,10 @@ $app->get('/user/:username', function() {
 
 Dengan begitu route hanya akan dianggap cocok jika parameter 'username' terdiri dari rangkaian huruf dan angka (a-z, 0-9).
 Bila tidak, aplikasi akan menampilkan halaman 404.
+
+<a id="route-group"></a>
+
+#### [Route Group](#route-group)
 
 Route group digunakan untuk mengelompokan route kamu sehingga lebih mudah dibaca dan dimaintain jika sewaktu-waktu ada perubahan pada path atau middleware group tersebut.
 

@@ -1,13 +1,16 @@
 <a id="getting-started"></a>
+
 # Memulai
 
 <a id="requirements"></a>
+
 ## [Kebutuhan](#requirements)
 
 * PHP 5.5 keatas.
 * Composer untuk instalasi.
 
 <a id="installation"></a>
+
 ## [Instalasi](#installation)
 
 Pertama-tama, siapkan direktori proyekmu:
@@ -24,6 +27,7 @@ composer require "rakit/framework"
 ```
 
 <a id="hello-world"></a>
+
 ## [Hello World](#hello-world)
 
 Buat file index.php, lalu ketikkan kode berikut:

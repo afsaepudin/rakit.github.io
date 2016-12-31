@@ -1,5 +1,6 @@
 
 <a id="middleware"></a>
+
 ## [Middleware](#middleware)
 
 Middleware adalah sebuah fungsi yang melapisi controller, atau middleware pada lapisan dibawahnya.
@@ -10,6 +11,7 @@ Middleware pada rakit framework sendiri hanya dapat didaftarkan pada route atau 
 Berikut contoh-contoh penggunaan middleware:
 
 <a id="middleware-filtering"></a>
+
 #### [Middleware untuk Filter Request](#middleware-filtering)
 
 Ini adalah fungsi yang paling umum dari middleware. Yaitu untuk autentikasi dan autorisasi.
@@ -54,6 +56,7 @@ Jika ada, middleware akan meneruskan request ke controller (lapisan dibawahnya) 
   mengembalikan hasil.
 
 <a id="middleware-manipulate"></a>
+
 #### [Middleware untuk Manipulasi Response](#middleware-manipulate)
 
 Terkadang kamu mungkin mau mengubah respon atau hasil yang dikirimkan oleh controller seperti menghapus karakter ilegal,
@@ -91,6 +94,7 @@ Pada contoh diatas, jika kamu mengakses '/api/something' maka hasilnya adalah JS
 ```
 
 <a id="middleware-parameter"></a>
+
 #### [Middleware dengan Parameter](#middleware-parameter)
 
 Seringkali kita mendapatkan kasus dimana aplikasi yang kita kembangkan memiliki berbagai macam kategori user, seperti 'admin', 'guru', 'murid'.
