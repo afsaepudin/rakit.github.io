@@ -61,7 +61,7 @@ Hanya saja, cara tersebut tidak dapat kamu gunakan untuk automatic injection
 karena `key` container ('pdo') tidak sama dengan nama classnya ('PDO').
 Cara ini lebih cocok jika kamu ingin nilai hanya dapat diakses langsung melalui instance dari app.
 
-Jika kamu ingin mendaftarkan sebuah nilai kepada beberapa key sekaligus, kamu dapat gunakan cara no.1, yaitu `register`.
+Jika kamu ingin mendaftarkan sebuah nilai menggunakan beberapa key sekaligus, kamu dapat gunakan cara no.1, yaitu `register`.
 Contoh:
 
 
