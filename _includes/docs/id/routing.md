@@ -38,7 +38,7 @@ $app->router->map(['GET', 'POST', 'PUT'], '/some-methods', function() {
 
 #### [Route Parameter](#route-parameter)
 
-Untuk mendaftarkan parameter pada route, gunakan `:nama_parameter`seperti kode berikut:
+Untuk mendaftarkan parameter pada route, gunakan `:nama_parameter` seperti kode berikut:
 
 ```php
 $app->get('/user/:username', function($username) {
