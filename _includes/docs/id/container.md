@@ -2,7 +2,7 @@
 
 ## [Container](#container)
 
-Container adalah tempat menampung dan mengelola layanan pada aplikasi. 
+Container adalah tempat menampung dan mengelola layanan atau objek pada aplikasi. 
 Setiap instance rakit framework sendiri seperti App, Router, Http Request, Http Response, 
 Configurator, dsb tersimpan di dalam sebuah Container sehingga kamu dapat mengaksesnya dengan mudah pada bagian lain dari aplikasi.
 
