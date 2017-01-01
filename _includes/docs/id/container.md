@@ -193,7 +193,7 @@ Pertama buat dulu `ProductRepository.php`-nya:
 ```php
 <?php
 
-// file: models/ProductRepository.php
+// file: repositories/ProductRepository.php
 
 class ProductRepository
 {
