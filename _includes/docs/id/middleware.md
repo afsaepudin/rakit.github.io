@@ -65,6 +65,7 @@ replace sesuatu, menginsert sesuatu ke JSON yang dihasilkan, dsb.
 Pada contoh berikut ini kita akan membuat middleware 'api' yang berguna untuk menambahkan 'status' ke dalam JSON.
 
 1) Mendaftarkan middleware:
+
 ```php
 $app->setMiddleware('api', function($req, $res, $next) {
     $result = $next();
