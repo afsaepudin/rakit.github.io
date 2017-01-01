@@ -185,7 +185,7 @@ class ProductController extends Controller
 
 ```
 
-> Bagian `parent::__construct` digunakan supaya controller dapat mengakses instance dari App dengan `$this`.
+> Pemanggilan `parent::__construct` digunakan supaya controller dapat mengakses instance dari App dengan `$this`.
 
 3) Menggunakan constructor injection. Disini dicontohkan kita ingin injeksi PDO kedalam class `ProductRepository`. 
 
