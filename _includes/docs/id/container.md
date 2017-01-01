@@ -135,7 +135,8 @@ Selain itu, container juga dapat memanggil method atau function dengan memperhat
 dependency dari method atau function tersebut (callable injection).
 
 Rakit framework akan melakukan injeksi otomatis ke route handler dan constructor controller kamu. 
-Namun kamu dapat constructor injection dengan `$app->container->make` dan callable injection dengan `$app->container->call`.
+Namun kamu dapat melakukan constructor injection dengan `$app->container->make` 
+dan callable injection dengan `$app->container->call`.
 
 Sebagai contoh, pertama kamu daftarkan PDO kedalam aplikasi seperti pada contoh-contoh sebelumnya:
 
