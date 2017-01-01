@@ -61,6 +61,19 @@ Hanya saja, cara tersebut tidak dapat kamu gunakan untuk automatic injection
 karena `key` container ('pdo') tidak sama dengan nama classnya ('PDO').
 Cara ini lebih cocok jika kamu ingin nilai hanya dapat diakses langsung melalui instance dari app.
 
+Jika kamu ingin mendaftarkan sebuah nilai kepada beberapa key sekaligus, kamu dapat gunakan cara no.1, yaitu `register`.
+Contoh:
+
+
+```php
+$app->container->register(['pdo', PDO::class], new PDO($dsn));
+
+// mengambil dan membandingkan nilai
+var_dump($app->pdo === $app[PDO::class]); // true
+```
+
+> Pada perbandingan diatas hasilnya `true` karena instance bersifat singleton didalam container.
+
 <a id="lazy-loading"></a>
 
 #### [Lazy Loading](#lazy-loading)
