@@ -121,8 +121,10 @@ Tapi singleton disini adalah bagaimana container aplikasi hanya memberikan sebua
 
 Untuk mendaftarkan objek supaya menjadi singleton, ada 2 cara, yaitu:
 
-1. Mendaftarkan instance secara langsung seperti [contoh sederhana](#container-basic) diatas. Objek tidak lazy loading.
-2. Menggunakan `$app->container->singleton`. Objek bersifat lazy loading.
+1. Mendaftarkan instance secara langsung seperti [contoh sederhana](#container-basic) diatas. 
+   Dengan cara ini, objek tidak bersifat lazy loading.
+2. Menggunakan `$app->container->singleton`. 
+   Dengan cara ini, objek menjadi bersifat lazy loading.
 
 Berikut contoh menggunakan cara kedua masih pada kasus PDO seperti sebelumnya:
 
